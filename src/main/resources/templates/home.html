@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+    <table>
+        <thead>
+        <tr>
+            <th><b>ID</b></th>
+            <th><b>Username</b></th>
+            <th><b>Password</b></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${users.isEmpty()}">
+            <td>No admins</td></tr>
+
+        <tr th:each="user : ${users}">
+            <div>
+                <td><span th:text="${user.id}">id</span></td>
+                <td><span th:text="${user.username}">username</span></td>
+                <td><span th:text="${user.password}">password</span></td>
+                <td><a th:href="@{/(r = ${user.id})}">Remove</a> </td>
+            </div>
+        </tr>
+        </tbody>
+
+    </table>
+    <div>Add new admin</div>
+    <form action="/" method="post">
+        <label> Username: <input type="text"  name="username"></label>
+        <label> Password: <input type="password"  name="password"></label>
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+        <input type="submit" value="Add" />
+    </form>
+</body>
+</html>
