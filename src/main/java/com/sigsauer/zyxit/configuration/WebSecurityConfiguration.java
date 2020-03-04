@@ -39,14 +39,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        //hard :)
-        if(userRepository.findByUsername("admin") == null) {
-            com.sigsauer.zyxit.domain.User userb = new User();
-            userb.setUsername("admin");
-            userb.setPassword("admin");
-            userRepository.save(userb);
-        }
-
         auth.userDetailsService(userService)
                 .passwordEncoder(NoOpPasswordEncoder.getInstance());
     }
