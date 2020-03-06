@@ -1,7 +1,5 @@
 package com.sigsauer.zyxit.configuration;
 
-import com.sigsauer.zyxit.domain.User;
-import com.sigsauer.zyxit.repository.UserRepository;
 import com.sigsauer.zyxit.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -17,9 +15,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private UserRepository userRepository;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
